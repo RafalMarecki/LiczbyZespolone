@@ -1,0 +1,9 @@
+#include "WyrazenieZesp.hh"
+#include <iostream>
+#include <cstdio>
+
+
+/*
+ * Tu nalezy zdefiniowac funkcje, ktorych zapowiedzi znajduja sie
+ * w pliku naglowkowym.
+ */
