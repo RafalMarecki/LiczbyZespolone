@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <climits>
 #include "WyrazenieZesp.hh"
 #include "LZespolona.hh"
 #include "BazaTestu.hh"
@@ -33,45 +34,24 @@ int main(int argc, char **argv)
   cout << endl;
   cout << " Start testu arytmetyki zespolonej: " << argv[1] << endl;
   cout << endl;
-
-  LZespolona L1 = Utworz(2,3); /***/
-  Wyswietl(L1);
-  LZespolona L2 = Utworz(2,-3);
-  Wyswietl(L2);
-  LZespolona L3 = L1 + L2;
-  Wyswietl(L3);
-
-  L1 = Utworz(1,2); /***/
-  Wyswietl(L1);
-  L2 = Utworz(3,4);
-  Wyswietl(L2);
-  L3 = L1 * L2;
-  Wyswietl(L3);
-  LZespolona L4 = L1 / L2;
-  Wyswietl(L4);
-
-  WyrazenieZesp   WyrZ_PytanieTestowe;
-  LZespolona Wynik;
-  string Liczba;
   
-  while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {
+  WyrazenieZesp WyrZ_PytanieTestowe;
+  LZespolona Wynik; 
+  
+    while (PobierzNastpnePytanie(&BazaT, &WyrZ_PytanieTestowe)) {
     cout<<"Oblicz wyrazenie:";
-    Wyswietl(WyrZ_PytanieTestowe); /*DZIAŁA*/
-    
+    cout<<WyrZ_PytanieTestowe; /* Test przeciazenia oeratora << dla WyrazenieZesp */
+    /*Wyswietl(WyrZ_PytanieTestowe);*/ /* DZIAŁA*/
     cout<<endl<<"Twoja odpowiedz:";
-    cin >> Liczba; /**********************/
-    /*Wynik = Liczba;*/
-    if (Wynik == Oblicz(WyrZ_PytanieTestowe))
-      cout<<"Poprawna odpowiedz\n";
+    cin >> Wynik;
+    cout << "Poprawny wynik to:" << Oblicz(WyrZ_PytanieTestowe); 
+    cout << "Ty odpowiedziales:" << Wynik; /* Testuje przeciazenie operatora << dla LZespolona*/
+    if (Wynik == Oblicz(WyrZ_PytanieTestowe)) 
+      cout<<"Jest to poprawna odpowiedz\n"<<endl;
     else
-      cout<<"Niepoprawna odpowiedz\n";
-      /*
-    cout << " Czesc rzeczywista pierwszego argumentu: ";
-    cout << WyrZ_PytanieTestowe.Arg1.re << endl;
-      */
+      cout<<"Jest to niepoprawna odpowiedz\n"<<endl;
+    cin.clear();
   }
-
-  
   cout << endl;
   cout << " Koniec testu" << endl;
   cout << endl;

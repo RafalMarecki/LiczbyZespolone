@@ -3,6 +3,7 @@
 #define LZESPOLONA_HH
 
 
+
 /*!
  *  Plik zawiera definicje struktury LZesplona oraz zapowiedzi
  *  przeciazen operatorow arytmetycznych dzialajacych na tej 
@@ -29,11 +30,13 @@ LZespolona  operator - (LZespolona  Skl1,  LZespolona  Skl2);
 LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2);
 LZespolona  operator / (LZespolona  Skl1,  LZespolona  Skl2);
 bool operator == (LZespolona  Skl1,  LZespolona  Skl2);
-LZespolona operator >> (string Liczba); 
+std::istream & operator >> (std::istream & strm,  LZespolona &Liczba);
+std::ostream & operator << (std::ostream & strm, const LZespolona &Liczba);
+/*bool Wczytaj_LZespolona (LZespolona &Liczba);*/
 
 LZespolona Sprzezenie (LZespolona lz);
 double Modul2 (LZespolona lz);
-LZespolona DzielenieR (LZespolona lz, double r);
+LZespolona operator / (LZespolona lz, double r);
 
 void Wyswietl (LZespolona lz); 
 

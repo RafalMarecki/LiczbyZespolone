@@ -24,6 +24,8 @@ struct WyrazenieZesp {
 
 
 void Wyswietl(WyrazenieZesp  WyrZ);
-LZespolona Oblicz(WyrazenieZesp  WyrZ);
+LZespolona Oblicz(WyrazenieZesp WyrZ);
+std::ostream & operator << (std::ostream & strm, const WyrazenieZesp &WyrZ);
+/*bool Wczytaj_WyrazenieZesp (WyrazenieZesp Wyrazenie);*/
 
 #endif

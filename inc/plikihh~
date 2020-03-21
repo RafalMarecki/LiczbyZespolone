@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "emacs WyrazenieZesp.hh&"
+echo "emacs LZespolona.hh&"
+echo "emacs BazaTestu.hh&"
