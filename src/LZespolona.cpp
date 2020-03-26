@@ -1,6 +1,7 @@
 #include "LZespolona.hh"
 #include <iostream>
 #include <cstdio>
+#include <climits>
 #include <math.h>
 #include <cmath>
 #include <string>
@@ -171,28 +172,66 @@ bool operator == (LZespolona  Skl1,  LZespolona  Skl2)
 
 std::istream & operator >> (std::istream & strm,  LZespolona &Liczba) 
 {
-  char znak;
+  char znak[3];
+  for (int i=0; i<3; i++)
+    {
+      if(!(cin>>znak[0]>>Liczba.re>>Liczba.im>>znak[1]>>znak[2]) || (znak[0]!= '(' || znak[1]!='i' || znak[2]!=')'))
+        {	  
+	  cin.clear();
+	  cin.ignore(INT_MAX, '\n');
+	  cout<<" Blad zapisu."<<endl;
+	  if(i==0)
+	    {
+	      cout<<" Masz jeszcze 2 proby na wpisanie wyniku w poprawnym formacie."<<endl;
+	    }
+	  if(i<2)
+	    {
+	      cout<<" Wpisz wynik:";
+	    }
+	  if(i==2)
+	    {
+	      strm.setstate(std::ios::failbit);
+	    }
+         }
+    else
+	  break;
+    }
+  return strm;
+}
+
+
   
+  /*
+  char znak;
   strm>>znak;
   if (znak!='(')
-    /*while(blad())*/
-    strm.setstate(std::ios::failbit);
+    {
+      strm.setstate(std::ios::failbit);
+      return strm;
+    }   
   strm>>Liczba.re;
   strm>>znak;
   if (znak!='+' && znak!='-')
-    strm.setstate(std::ios::failbit);
+    {
+      strm.setstate(std::ios::failbit);
+      return strm;
+    }  
   strm>>Liczba.im;
   if (znak=='-')
     Liczba.im = -Liczba.im;  
   strm>>znak;
   if (znak!='i')
-    strm.setstate(std::ios::failbit);
+    {
+      strm.setstate(std::ios::failbit);
+      return strm;
+    }  
   strm>>znak;
   if (znak!=')')
     strm.setstate(std::ios::failbit);
-    
+  
   return strm; 
 }
+  */
 
 std::ostream & operator << (std::ostream & strm, const LZespolona &Liczba)
 {
@@ -201,15 +240,6 @@ std::ostream & operator << (std::ostream & strm, const LZespolona &Liczba)
 
 /*Przeciazenie operatora wyjscia dla wyrazenia zespolonego znajduje się w WyrazenieZesp.cpp*/
 
-/*
-bool Wczytaj_LZespolona (LZespolona &Liczba)
-{
-  cin >> Liczba;
-  if (!cin.good())
-    return false;
-  return true;
-}
-*/
 
 
 

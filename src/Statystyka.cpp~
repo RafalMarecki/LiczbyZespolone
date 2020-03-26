@@ -1,0 +1,17 @@
+
+#include <iostream>
+#include "Statystyka.hh"
+
+using namespace std;
+
+void dobra_odp ()
+{
+  Statystyka s;
+  s.dobre++;
+}
+
+void zla_odp ()
+{
+  Statystyka s;
+  s.dobre++;
+}

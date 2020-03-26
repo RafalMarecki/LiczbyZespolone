@@ -1,0 +1,6 @@
+
+struct Statystyka
+{
+  double dobre;
+  double zle;
+};
