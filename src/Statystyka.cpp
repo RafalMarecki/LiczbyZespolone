@@ -21,6 +21,8 @@ double procent (Statystyka s)
 
 void statystyka (Statystyka s)
 {
+  cout<<"Ilosc poprawnych odpowiedzi: "<<s.dobra<<endl;
+  cout<<"Ilosc niepoprawnych odpowiedzi: "<<s.zla<<endl;
   if(s.dobra==0)
     {
       cout<<"Procent poprawnych odpowiedzi: "<<"0%"<<endl;

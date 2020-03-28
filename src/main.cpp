@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <climits>
 #include "WyrazenieZesp.hh"
 #include "LZespolona.hh"
 #include "BazaTestu.hh"
@@ -38,27 +39,43 @@ int main(int argc, char **argv)
   
   WyrazenieZesp WyrZ_PytanieTestowe;
   LZespolona Wynik;
+  int i;
   Statystyka S; S.dobra=0; S.zla=0;
   
     while (PobierzNastpnePytanie(&BazaT, &WyrZ_PytanieTestowe)) {
-    cout<<"Oblicz wyrazenie:"<<WyrZ_PytanieTestowe;
-    cout<<endl<<" Twoja odpowiedz:";
-    cin >> Wynik;
-    if(!cin.good())/*Wychodzi z pętli, jeśli 3 razy wpisano zly format liczby*/
-	break;
+    cout<<endl<<"Oblicz wyrazenie:"<<WyrZ_PytanieTestowe;
+    cout<<endl<<endl;
+    for (i=0; i<3; i++)
+      {
+	cout<<" Wpisz wynik:";
+	cin>>Wynik;
+	if (!cin.good())
+	  {
+	    cin.clear();
+            cin.ignore(INT_MAX, '\n');
+	    cout<<" Blad zapisu."<<endl;
+	    if(i==0)
+	      {
+	        cout<<" Masz jeszcze 2 proby na wpisanie wyniku w poprawnym formacie."<<endl;
+              }
+	  }
+	else
+	  break;
+      }
+    
     if (Wynik == Oblicz(WyrZ_PytanieTestowe))
       {
 	cout<<" Jest to poprawna odpowiedz\n"<<endl;
 	dobra_odp(S);
       }
-    else
+    else  /*Mógłbym tu napisać if(Wynik != Oblicz(WyrZ_PytanieTestowe))*/
       {
 	cout<<" Jest to niepoprawna odpowiedz\n"<<endl;
 	zla_odp(S);
       }
   }
   cout << endl;
-  statystyka (S); /*Wyswietla procent poprawnych odpowiedzi*/
+  statystyka (S); /*Wyswietla ilosc popr. niepopr. odp. oraz % popr. odp.*/
   cout << " Koniec testu" << endl;
   cout << endl;
 

@@ -3,7 +3,7 @@ TRGDIR=./
 OBJ=./obj
 FLAGS= -Wall -pedantic -std=c++14 -iquote inc
 
-__start__: ${TRGDIR}/test_arytm_zesp
+__start__:${TRGDIR}/test_arytm_zesp
 	${TRGDIR}/test_arytm_zesp  latwy
 
 ${TRGDIR}/test_arytm_zesp: ${OBJ} ${OBJ}/main.o ${OBJ}/LZespolona.o\

@@ -43,8 +43,11 @@ double Modul2 (LZespolona lz)
 LZespolona operator / (LZespolona lz, double r)
 {
   LZespolona Wynik;
-  Wynik.re = lz.re/r;
-  Wynik.im = lz.im/r;
+  if (r!=0)
+    {
+      Wynik.re = lz.re/r;
+      Wynik.im = lz.im/r;
+    }
   return Wynik;
 }
 /*!
@@ -170,72 +173,25 @@ bool operator == (LZespolona  Skl1,  LZespolona  Skl2)
  *    Wartosc false, gdy liczby przekazane przez parametry sa od siebie rozne.
  */
 
+bool operator != (LZespolona  Skl1,  LZespolona  Skl2)
+{
+  bool Wynik = false;
+  if (Skl1.re != Skl2.re || Skl1.im != Skl2.im)
+    Wynik = true;
+  return Wynik;
+}
+
 std::istream & operator >> (std::istream & strm,  LZespolona &Liczba) 
 {
   char znak[3];
-  for (int i=0; i<3; i++)
-    {
-      if(!(cin>>znak[0]>>Liczba.re>>Liczba.im>>znak[1]>>znak[2]) || (znak[0]!= '(' || znak[1]!='i' || znak[2]!=')'))
-        {	  
-	  cin.clear();
-	  cin.ignore(INT_MAX, '\n');
-	  cout<<" Blad zapisu."<<endl;
-	  if(i==0)
-	    {
-	      cout<<" Masz jeszcze 2 proby na wpisanie wyniku w poprawnym formacie."<<endl;
-	    }
-	  if(i<2)
-	    {
-	      cout<<" Wpisz wynik:";
-	    }
-	  if(i==2)
-	    {
-	      strm.setstate(std::ios::failbit);
-	    }
-         }
-    else
-	  break;
-    }
+  if(!(cin>>znak[0]>>Liczba.re>>Liczba.im>>znak[1]>>znak[2]) || (znak[0]!= '(' || znak[1]!='i' || znak[2]!=')'))
+      strm.setstate(std::ios::failbit); 	    
   return strm;
-}
-
-
-  
-  /*
-  char znak;
-  strm>>znak;
-  if (znak!='(')
-    {
-      strm.setstate(std::ios::failbit);
-      return strm;
-    }   
-  strm>>Liczba.re;
-  strm>>znak;
-  if (znak!='+' && znak!='-')
-    {
-      strm.setstate(std::ios::failbit);
-      return strm;
-    }  
-  strm>>Liczba.im;
-  if (znak=='-')
-    Liczba.im = -Liczba.im;  
-  strm>>znak;
-  if (znak!='i')
-    {
-      strm.setstate(std::ios::failbit);
-      return strm;
-    }  
-  strm>>znak;
-  if (znak!=')')
-    strm.setstate(std::ios::failbit);
-  
-  return strm; 
-}
-  */
+} 
 
 std::ostream & operator << (std::ostream & strm, const LZespolona &Liczba)
 {
-  return strm<<"("<<Liczba.re<<std::showpos<<Liczba.im<<std::noshowpos<<"i)\n";
+  return strm<<"("<<Liczba.re<<std::showpos<<Liczba.im<<std::noshowpos<<"i)";
 }
 
 /*Przeciazenie operatora wyjscia dla wyrazenia zespolonego znajduje się w WyrazenieZesp.cpp*/
